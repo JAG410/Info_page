@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Command Legacy - Law Reference for Police Supervisors</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     * {
       margin: 0;
@@ -58,12 +59,8 @@
     
     .description {
       font-size: 1.1rem;
-      line-height: 1.8;
       color: #c5c6c7;
-      margin-bottom: 30px;
-      max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
+      line-height: 1.8;
     }
     
     .highlight {
@@ -72,21 +69,21 @@
     }
     
     .section {
-      margin-bottom: 50px;
+      margin-bottom: 60px;
     }
     
     h2 {
       font-size: 2rem;
-      color: #66fcf1;
-      margin-bottom: 20px;
+      margin-bottom: 30px;
       text-align: center;
+      color: #66fcf1;
     }
     
     .feature-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 30px;
-      margin-bottom: 40px;
+      margin-bottom: 30px;
     }
     
     .feature-card {
@@ -95,68 +92,61 @@
       border-radius: 12px;
       padding: 30px;
       text-align: center;
-      transition: all 0.3s ease;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
     
     .feature-card:hover {
-      background: rgba(102, 252, 241, 0.1);
-      border-color: rgba(102, 252, 241, 0.4);
       transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(102, 252, 241, 0.2);
     }
     
     .feature-icon {
       font-size: 3rem;
-      margin-bottom: 15px;
+      margin-bottom: 20px;
+      color: #66fcf1;
     }
     
     .feature-title {
       font-size: 1.3rem;
-      color: #66fcf1;
-      margin-bottom: 10px;
       font-weight: 600;
+      margin-bottom: 15px;
+      color: #66fcf1;
     }
     
     .feature-text {
       color: #c5c6c7;
       font-size: 1rem;
-      line-height: 1.6;
     }
     
     .cta-section {
       text-align: center;
-      padding: 40px;
-      background: rgba(102, 252, 241, 0.05);
-      border: 2px solid rgba(102, 252, 241, 0.2);
-      border-radius: 16px;
-      margin-bottom: 50px;
+      margin-top: 60px;
     }
     
     .cta-title {
       font-size: 2rem;
-      color: #66fcf1;
       margin-bottom: 15px;
+      color: #66fcf1;
     }
     
     .cta-subtitle {
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       color: #c5c6c7;
-      margin-bottom: 30px;
+      margin-bottom: 40px;
     }
     
     .form-container {
-      background: rgba(102, 252, 241, 0.03);
+      max-width: 700px;
+      margin: 0 auto;
+      background: rgba(102, 252, 241, 0.05);
       border: 1px solid rgba(102, 252, 241, 0.2);
       border-radius: 12px;
-      padding: 30px;
-      margin-top: 30px;
-      max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
+      padding: 20px;
     }
     
     .form-intro {
       text-align: center;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
     }
     
     .form-intro h3 {
@@ -166,12 +156,10 @@
     
     .form-intro p {
       color: #c5c6c7;
-      font-size: 0.95rem;
     }
     
     iframe {
       width: 100%;
-      min-height: 1067px;
       border: none;
       border-radius: 8px;
     }
@@ -185,20 +173,8 @@
         font-size: 1.1rem;
       }
       
-      .description {
-        font-size: 1rem;
-      }
-      
       .feature-grid {
         grid-template-columns: 1fr;
-      }
-      
-      .cta-section {
-        padding: 30px 20px;
-      }
-      
-      .form-container {
-        padding: 20px;
       }
     }
   </style>
@@ -213,7 +189,7 @@
       <h1>Command Legacy</h1>
       <p class="tagline">Empowering officers to lead with accuracy, confidence, and integrity through modern tools and shared insight.</p>
       <p class="description">
-        <span class="highlight">Command Legacy</span> is 'Slack meets LexisNexis' for police supervisors—combining fast legal clarity with a verified peer network. It delivers clear, plain-language law explanations and connects supervisors in a secure community to lead smarter and more confidently in the field.
+        <span class="highlight">Command Legacy</span> is 'Slack meets LexisNexis' for police supervisors, combining fast legal clarity with a verified peer network. It delivers clear, plain-language law explanations and connects supervisors in a secure community to lead smarter and more confidently in the field.
       </p>
     </div>
     
@@ -221,23 +197,29 @@
       <h2>Built for Field Leaders</h2>
       <div class="feature-grid">
         <div class="feature-card">
-          <div class="feature-icon">⚖️</div>
+          <div class="feature-icon">
+            <i class="fas fa-balance-scale"></i>
+          </div>
           <div class="feature-title">Plain-Language Law</div>
           <div class="feature-text">Clear legal explanations that help you make correct decisions quickly in the field.</div>
         </div>
         <div class="feature-card">
-          <div class="feature-icon">🤝</div>
+          <div class="feature-icon">
+            <i class="fas fa-users"></i>
+          </div>
           <div class="feature-title">Verified Peer Network</div>
           <div class="feature-text">Connect with fellow supervisors in a secure community for real-world insights.</div>
         </div>
         <div class="feature-card">
-          <div class="feature-icon">🔒</div>
+          <div class="feature-icon">
+            <i class="fas fa-lock"></i>
+          </div>
           <div class="feature-title">Privacy First</div>
           <div class="feature-text">No tracking, only support. Built to reduce AI hallucinations and protect your data.</div>
         </div>
       </div>
       <p class="description" style="text-align: center;">
-        Built for field use, Command Legacy serves corporals, sergeants, and FTOs at small to mid-size departments—over 90% of agencies nationwide—helping them make correct decisions quickly.
+        Built for field use, Command Legacy serves corporals, sergeants, and FTOs, helping them make correct decisions quickly.
       </p>
     </div>
     
