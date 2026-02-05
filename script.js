@@ -102,14 +102,21 @@ document.addEventListener('DOMContentLoaded', function() {
             
             try {
                // Submit to Airtable (beta signup)
-await fetch(CONFIG.BETA_SHEET_URL, {
-  method: 'POST',
-  mode: 'no-cors',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify(formData)
+// Build a plain object from the form
+const payload = Object.fromEntries(new FormData(betaForm).entries());
+
+// Submit to Airtable webhook
+const res = await fetch(CONFIG.BETA_SHEET_URL, {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify(payload),
 });
+
+if (!res.ok) {
+  const text = await res.text().catch(() => "");
+  throw new Error(`Airtable webhook failed: ${res.status} ${text}`);
+}
+
 
                 
                 // Show confirmation and hide form
