@@ -6,7 +6,7 @@
 const CONFIG = {
     // Google Sheets webhook URLs (YOU NEED TO ADD THESE)
     UPDATES_SHEET_URL: 'YOUR_GOOGLE_APPS_SCRIPT_URL_FOR_UPDATES',
-    BETA_SHEET_URL: 'YOUR_GOOGLE_APPS_SCRIPT_URL_FOR_BETA',
+    BETA_SHEET_URL: 'https://hooks.airtable.com/workflows/v1/genericWebhook/appzKSF49Zzmppf2w/wflUGXhArOF7GgtoA/wtrhct2WYHSp3lH2L',
     
     // Email endpoint for beta form
     BETA_EMAIL_ENDPOINT: 'https://formsubmit.co/betausers@commandlegacy.io',
