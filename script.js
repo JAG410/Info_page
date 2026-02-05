@@ -4,9 +4,11 @@
 
 // Configuration
 const CONFIG = {
-  UPDATES_SHEET_URL: 'YOUR_GOOGLE_APPS_SCRIPT_URL_FOR_UPDATES',
-  BETA_SHEET_URL: 'https://hooks.airtable.com/workflows/v1/genericWebhook/…'
+  UPDATES_SHEET_URL: '',
+  BETA_SHEET_URL: 'https://hooks.airtable.com/workflows/v1/genericWebhook/appzKSF49Zzmppf2w/wflUGXhArOF7GgtoA/wtrhct2WYHSp3lH2L'
 };
+
+
 
 
 // ================================
@@ -27,6 +29,13 @@ document.addEventListener('DOMContentLoaded', function() {
             // Disable submit button
             submitButton.disabled = true;
             submitButton.textContent = 'Subscribing...';
+          if (!CONFIG.UPDATES_SHEET_URL) {
+  alert('Updates signup is not live yet.');
+  submitButton.disabled = false;
+  submitButton.textContent = 'Subscribe';
+  return;
+}
+
             
             try {
                 // Submit to Google Sheets
@@ -92,35 +101,16 @@ document.addEventListener('DOMContentLoaded', function() {
             submitButton.textContent = 'Submitting...';
             
             try {
-                // Submit to both Google Sheets and Email
-                const promises = [
-                    // Google Sheets
-                    fetch(CONFIG.BETA_SHEET_URL, {
-                        method: 'POST',
-                        mode: 'no-cors',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify(formData)
-                    }),
-                    
-                    // Email via FormSubmit
-                    fetch(CONFIG.BETA_EMAIL_ENDPOINT, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Accept': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            ...formData,
-                            _subject: 'New Beta Access Request - Command Legacy',
-                            _template: 'table',
-                            _captcha: 'false'
-                        })
-                    })
-                ];
-                
-                await Promise.all(promises);
+               // Submit to Airtable (beta signup)
+await fetch(CONFIG.BETA_SHEET_URL, {
+  method: 'POST',
+  mode: 'no-cors',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify(formData)
+});
+
                 
                 // Show confirmation and hide form
                 betaForm.style.display = 'none';
