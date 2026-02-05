@@ -5,7 +5,7 @@
 // Configuration
 const CONFIG = {
   UPDATES_SHEET_URL: '',
-  BETA_SHEET_URL: 'https://hooks.airtable.com/workflows/v1/genericWebhook/appzKSF49Zzmppf2w/wflUGXhArOF7GgtoA/wtrhct2WYHSp3lH2L'
+  BETA_SHEET_URL: 'https://command-legacy-beta-proxy.johnsonadvisorygrp.workers.dev/'
 };
 
 
@@ -102,10 +102,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             try {
                // Submit to Airtable (beta signup)
-// Build a plain object from the form
-const payload = Object.fromEntries(new FormData(betaForm).entries());
 
-// Submit to Airtable webhook
 const payload = {
   name: document.getElementById('name').value.trim(),
   personal_email: document.getElementById('personal-email').value.trim(),
@@ -117,11 +114,15 @@ const payload = {
   timestamp: new Date().toISOString()
 };
 
-const res = await fetch(CONFIG.BETA_SHEET_URL, {
+const response = await fetch(CONFIG.BETA_SHEET_URL, {
   method: "POST",
   headers: { "Content-Type": "application/json" },
   body: JSON.stringify(payload),
 });
+
+if (!response.ok) {
+  throw new Error('Submission failed');
+}
 
 
 
