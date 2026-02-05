@@ -615,7 +615,6 @@ body {
 .launching {
     color: var(--gold);
     font-weight: 600;
-    text-transform: uppercase;
     letter-spacing: 0.1em;
     font-size: 0.75rem;
 }
