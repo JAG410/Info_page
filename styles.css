@@ -697,3 +697,8 @@ body {
         margin-top: 4rem;
     }
 }
+.footer-tagline {
+  color: var(--gold);
+  font-weight: 700;
+}
+
