@@ -1,240 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Command Legacy - Law Reference for Police Supervisors</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-      background: linear-gradient(135deg, #0b0c10 0%, #1a1d24 100%);
-      color: #f6f7f9;
-      line-height: 1.6;
-      min-height: 100vh;
-      padding: 20px;
-    }
-    
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 40px 20px;
-    }
-    
-    .logo-container {
-      text-align: center;
-      margin-bottom: 50px;
-    }
-    
-    .logo {
-      max-width: 400px;
-      width: 100%;
-      height: auto;
-    }
-    
-    .hero-section {
-      text-align: center;
-      margin-bottom: 60px;
-    }
-    
-    h1 {
-      font-size: 2.5rem;
-      font-weight: 700;
-      margin-bottom: 20px;
-      color: #66fcf1;
-    }
-    
-    .tagline {
-      font-size: 1.25rem;
-      color: #c5c6c7;
-      margin-bottom: 30px;
-      font-weight: 500;
-    }
-    
-    .description {
-      font-size: 1.1rem;
-      color: #c5c6c7;
-      line-height: 1.8;
-    }
-    
-    .highlight {
-      color: #66fcf1;
-      font-weight: 600;
-    }
-    
-    .section {
-      margin-bottom: 60px;
-    }
-    
-    h2 {
-      font-size: 2rem;
-      margin-bottom: 30px;
-      text-align: center;
-      color: #66fcf1;
-    }
-    
-    .feature-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 30px;
-      margin-bottom: 30px;
-    }
-    
-    .feature-card {
-      background: rgba(102, 252, 241, 0.05);
-      border: 1px solid rgba(102, 252, 241, 0.2);
-      border-radius: 12px;
-      padding: 30px;
-      text-align: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    
-    .feature-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 30px rgba(102, 252, 241, 0.2);
-    }
-    
-    .feature-icon {
-      font-size: 3rem;
-      margin-bottom: 20px;
-      color: #66fcf1;
-    }
-    
-    .feature-title {
-      font-size: 1.3rem;
-      font-weight: 600;
-      margin-bottom: 15px;
-      color: #66fcf1;
-    }
-    
-    .feature-text {
-      color: #c5c6c7;
-      font-size: 1rem;
-    }
-    
-    .cta-section {
-      text-align: center;
-      margin-top: 60px;
-    }
-    
-    .cta-title {
-      font-size: 2rem;
-      margin-bottom: 15px;
-      color: #66fcf1;
-    }
-    
-    .cta-subtitle {
-      font-size: 1.2rem;
-      color: #c5c6c7;
-      margin-bottom: 40px;
-    }
-    
-    .form-container {
-      max-width: 700px;
-      margin: 0 auto;
-      background: rgba(102, 252, 241, 0.05);
-      border: 1px solid rgba(102, 252, 241, 0.2);
-      border-radius: 12px;
-      padding: 20px;
-    }
-    
-    .form-intro {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-    
-    .form-intro h3 {
-      color: #66fcf1;
-      margin-bottom: 10px;
-    }
-    
-    .form-intro p {
-      color: #c5c6c7;
-    }
-    
-    iframe {
-      width: 100%;
-      border: none;
-      border-radius: 8px;
-    }
-    
-    @media (max-width: 768px) {
-      h1 {
-        font-size: 2rem;
-      }
-      
-      .tagline {
-        font-size: 1.1rem;
-      }
-      
-      .feature-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Command Legacy - Law Reference and Leadership Tools for Field Officers</title>
+    <meta name="description" content="Law reference, peer support, and leadership resources for officers leading in the field. Privacy-first tools built for police supervisors.">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="container">
-    <div class="logo-container">
-      <img src="mockup.jpg" alt="Command Legacy Logo" class="logo">
-    </div>
-    
-    <div class="hero-section">
-      <h1>Command Legacy</h1>
-      <p class="tagline">Empowering officers to lead with accuracy, confidence, and integrity through modern tools and shared insight.</p>
-      <p class="description">
-        <span class="highlight">Command Legacy</span> is 'Slack meets LexisNexis' for police supervisors, combining fast legal clarity with a verified peer network. It delivers clear, plain-language law explanations and connects supervisors in a secure community to lead smarter and more confidently in the field.
-      </p>
-    </div>
-    
-    <div class="section">
-      <h2>Built for Field Leaders</h2>
-      <div class="feature-grid">
-        <div class="feature-card">
-          <div class="feature-icon">
-            <i class="fas fa-balance-scale"></i>
-          </div>
-          <div class="feature-title">Plain-Language Law</div>
-          <div class="feature-text">Clear legal explanations that help you make correct decisions quickly in the field.</div>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <img src="logo.png" srcset="logo.png 2x, logo@3x.png 3x" alt="Command Legacy" class="logo">
+            <h1 class="hero-title">Law reference, peer support, and leadership resources for officers leading in the field</h1>
         </div>
-        <div class="feature-card">
-          <div class="feature-icon">
-            <i class="fas fa-users"></i>
-          </div>
-          <div class="feature-title">Verified Peer Network</div>
-          <div class="feature-text">Connect with fellow supervisors in a secure community for real-world insights.</div>
+        <div class="scroll-indicator"></div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="features-grid">
+            <div class="feature">
+                <div class="feature-accent"></div>
+                <h3>Plain-Language Law Reference</h3>
+                <p>Clear legal explanations for fast, confident decisions in the field</p>
+            </div>
+            <div class="feature">
+                <div class="feature-accent"></div>
+                <h3>Verified Peer Network</h3>
+                <p>Connect with officers in a secure, professional community</p>
+            </div>
+            <div class="feature">
+                <div class="feature-accent"></div>
+                <h3>Privacy First</h3>
+                <p>No tracking. No surveillance. Just support for field leaders</p>
+            </div>
         </div>
-        <div class="feature-card">
-          <div class="feature-icon">
-            <i class="fas fa-lock"></i>
-          </div>
-          <div class="feature-title">Privacy First</div>
-          <div class="feature-text">No tracking, only support. Built to reduce AI hallucinations and protect your data.</div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works">
+        <div class="how-it-works-content">
+            <h2 class="section-title">How It Works</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-number">1</div>
+                    <h3>Sign up and verify your credentials</h3>
+                    <p>Quick verification process ensures a trusted, professional community</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-number">2</div>
+                    <h3>Ask questions in plain language</h3>
+                    <p>Describe your scene or situation and get clear legal reference instantly</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-number">3</div>
+                    <h3>Lead with confidence in the field</h3>
+                    <p>Make informed decisions backed by accurate law reference and peer insights</p>
+                </div>
+            </div>
         </div>
-      </div>
-      <p class="description" style="text-align: center;">
-        Built for field use, Command Legacy serves corporals, sergeants, and FTOs, helping them make correct decisions quickly.
-      </p>
-    </div>
-    
-    <div class="cta-section">
-      <h2 class="cta-title">Join the Interest List</h2>
-      <p class="cta-subtitle">Be among the first to know when Command Legacy launches</p>
-      
-      <div class="form-container">
-        <div class="form-intro">
-          <h3>Sign Up for Updates</h3>
-          <p>Get early access and stay informed about our launch</p>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works">
+        <div class="how-it-works-content">
+            <h2 class="section-title">How It Works</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-number">1</div>
+                    <h3>Sign up and verify your credentials</h3>
+                    <p>Quick verification process ensures a trusted, professional community</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-number">2</div>
+                    <h3>Ask questions in plain language</h3>
+                    <p>Describe your scene or situation and get clear legal reference instantly</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-number">3</div>
+                    <h3>Lead with confidence in the field</h3>
+                    <p>Make informed decisions backed by accurate law reference and peer insights</p>
+                </div>
+            </div>
         </div>
-        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdqBsbktnEQckznscYE-Kh4WBmcLl_1NP05iLhGchkG7EUlXQ/viewform?embedded=true" width="640" height="1067" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
-      </div>
-    </div>
-  </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="cta-content">
+            <h2>Join the Beta</h2>
+            <p>Built for officers who run shifts, supervise, or serve as FTO or higher</p>
+            <a href="beta-signup.html" class="btn-primary">Request Beta Access</a>
+            
+            <div class="email-capture">
+                <p class="email-label">Or get updates</p>
+                <form id="updates-form" class="inline-form">
+                    <input type="email" id="email-updates" name="email" placeholder="your@email.com" required>
+                    <button type="submit" class="btn-secondary">Subscribe</button>
+                </form>
+                <div id="updates-confirmation" class="confirmation hidden">Thanks! We'll be in touch soon</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="https://tos.commandlegacy.io/privacy.html">Privacy</a>
+            <a href="https://tos.commandlegacy.io/index.html">Terms</a>
+            <a href="https://tos.commandlegacy.io/eula.html">EULA</a>
+            <a href="https://tos.commandlegacy.io/support.html">Support</a>
+        </div>
+        <div class="footer-info">
+            <p>&copy; 2026 Command Legacy</p>
+            <p class="launching">Launching Soon</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
