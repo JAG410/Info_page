@@ -106,16 +106,23 @@ document.addEventListener('DOMContentLoaded', function() {
 const payload = Object.fromEntries(new FormData(betaForm).entries());
 
 // Submit to Airtable webhook
+const payload = {
+  name: document.getElementById('name').value.trim(),
+  personal_email: document.getElementById('personal-email').value.trim(),
+  work_email: document.getElementById('work-email').value.trim(),
+  department: document.getElementById('department').value.trim(),
+  jurisdiction: document.getElementById('jurisdiction').value.trim(),
+  rank: document.getElementById('rank').value.trim(),
+  years: document.getElementById('years').value.trim(),
+  timestamp: new Date().toISOString()
+};
+
 const res = await fetch(CONFIG.BETA_SHEET_URL, {
   method: "POST",
   headers: { "Content-Type": "application/json" },
   body: JSON.stringify(payload),
 });
 
-if (!res.ok) {
-  const text = await res.text().catch(() => "");
-  throw new Error(`Airtable webhook failed: ${res.status} ${text}`);
-}
 
 
                 
