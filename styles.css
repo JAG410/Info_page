@@ -618,6 +618,10 @@ body {
     letter-spacing: 0.1em;
     font-size: 0.75rem;
 }
+.footer-tagline {
+  font-weight: 700;
+  color: #d4af37;
+}
 
 /* ========================================
    RESPONSIVE
