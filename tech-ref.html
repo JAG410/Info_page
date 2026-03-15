@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="CL Tech">
+<meta name="theme-color" content="#0a0e1a">
+<title>CL Tech Reference</title>
+<style>
+:root{--navy:#0a0e1a;--navy-mid:#111827;--navy-light:#1a2540;--navy-card:#141c2e;--gold:#c9a84c;--gold-light:#e8c96a;--gold-dim:rgba(201,168,76,0.12);--gold-border:rgba(201,168,76,0.22);--white:#f0f4f8;--muted:#7a8ea8;--green:#4aaa7f;--green-dim:rgba(74,170,127,0.15);--red:#c95252;--red-dim:rgba(201,82,82,0.15);--blue:#4ab8d4;--blue-dim:rgba(74,184,212,0.12);--safe-top:env(safe-area-inset-top,44px);--safe-bottom:env(safe-area-inset-bottom,20px)}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{background:var(--navy);color:var(--white);font-family:'IBM Plex Sans',system-ui,sans-serif;font-weight:300;min-height:100%;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(201,168,76,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(201,168,76,.025) 1px,transparent 1px);background-size:32px 32px;pointer-events:none;z-index:0}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,14,26,.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--gold-border);padding-top:var(--safe-top)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:12px 20px}
+.nav-brand{font-family:'Bebas Neue',system-ui,sans-serif;font-size:22px;letter-spacing:.08em;color:var(--gold)}
+.nav-brand span{color:var(--white);font-size:14px;font-family:monospace;display:block;line-height:1;margin-top:-2px}
+.nav-score{display:flex;align-items:center;gap:6px;background:var(--gold-dim);border:1px solid var(--gold-border);padding:5px 12px;border-radius:20px}
+.score-num{font-family:'Bebas Neue',sans-serif;font-size:18px;color:var(--gold);letter-spacing:.06em}
+.score-label{font-size:9px;color:var(--muted);letter-spacing:.12em;font-family:monospace}
+.tabs{position:fixed;bottom:0;left:0;right:0;z-index:100;background:rgba(10,14,26,.95);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-top:1px solid var(--gold-border);padding-bottom:var(--safe-bottom);display:flex}
+.tab{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:10px 0 8px;cursor:pointer;border:none;background:none;color:var(--muted);-webkit-appearance:none}
+.tab.active{color:var(--gold)}
+.tab-icon{font-size:20px;line-height:1}
+.tab-label{font-size:9px;letter-spacing:.1em;text-transform:uppercase;font-family:monospace}
+.page{display:none;position:relative;z-index:1;padding-top:calc(var(--safe-top) + 68px);padding-bottom:calc(var(--safe-bottom) + 70px);padding-left:16px;padding-right:16px;min-height:100vh}
+.page.active{display:block;animation:slideUp .3s ease}
+@keyframes slideUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.home-hero{padding:24px 0 20px;border-bottom:1px solid var(--gold-border);margin-bottom:24px}
+.hero-eyebrow{font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;font-family:monospace}
+.hero-title{font-family:'Bebas Neue',sans-serif;font-size:48px;line-height:.92;letter-spacing:.04em}
+.hero-title span{color:var(--gold);display:block}
+.hero-sub{margin-top:12px;font-size:10px;color:var(--muted);letter-spacing:.08em;font-family:monospace}
+.stat-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:24px}
+.stat-tile{background:var(--navy-card);border:1px solid rgba(255,255,255,.06);padding:12px 10px;text-align:center;border-radius:4px}
+.stat-tile-val{font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--gold);letter-spacing:.06em;display:block}
+.stat-tile-label{font-size:8px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;margin-top:2px;display:block;font-family:monospace}
+.sec-label{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:10px;margin-bottom:12px;font-family:monospace}
+.sec-label::after{content:'';flex:1;height:1px;background:var(--gold-border)}
+.stack-card{background:var(--navy-card);border:1px solid rgba(255,255,255,.06);border-radius:4px;margin-bottom:8px;overflow:hidden;cursor:pointer;transition:border-color .2s;-webkit-user-select:none}
+.stack-card:active{border-color:var(--gold-border);opacity:.9}
+.stack-card-header{display:flex;align-items:center;gap:12px;padding:14px 16px}
+.stack-icon{width:36px;height:36px;border-radius:6px;background:var(--gold-dim);border:1px solid var(--gold-border);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.stack-info{flex:1;min-width:0}
+.stack-tag{font-size:8px;letter-spacing:.18em;color:var(--muted);text-transform:uppercase;font-family:monospace}
+.stack-name{font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:.05em;margin-top:1px}
+.stack-chevron{font-size:12px;color:var(--muted);transition:transform .25s;flex-shrink:0}
+.stack-card.open .stack-chevron{transform:rotate(90deg);color:var(--gold)}
+.stack-body{display:none;padding:0 16px 16px;border-top:1px solid rgba(255,255,255,.05)}
+.stack-card.open .stack-body{display:block}
+.body-section-label{font-size:8px;letter-spacing:.2em;color:var(--muted);text-transform:uppercase;margin:12px 0 6px;font-family:monospace}
+.body-text{font-size:13px;color:#b0c0d0;line-height:1.7}
+.say-block{background:rgba(201,168,76,.07);border-left:3px solid var(--gold);padding:12px 14px;margin:10px 0;border-radius:0 4px 4px 0}
+.say-label-sm{font-size:8px;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;margin-bottom:6px;font-family:monospace}
+.say-text{font-size:12px;color:#c0d0e0;line-height:1.75;font-style:italic}
+.ceo-note{background:var(--blue-dim);border-left:3px solid var(--blue);padding:10px 12px;margin-top:10px;border-radius:0 4px 4px 0}
+.note-label-sm{font-size:8px;letter-spacing:.2em;color:var(--blue);text-transform:uppercase;margin-bottom:5px;font-family:monospace}
+.note-text{font-size:11.5px;color:#88aabc;line-height:1.65}
+.bullet-list{list-style:none;margin-top:8px;display:flex;flex-direction:column;gap:5px}
+.bullet-list li{display:flex;gap:8px;font-size:12px;color:#8899aa;line-height:1.55}
+.bullet-list li::before{content:'\25B8';color:var(--gold);flex-shrink:0;font-size:9px;margin-top:2px}
+.qa-card{background:var(--navy-card);border:1px solid rgba(255,255,255,.06);border-radius:4px;margin-bottom:8px;overflow:hidden;cursor:pointer}
+.qa-card:active{opacity:.85}
+.qa-q-row{display:flex;align-items:flex-start;gap:10px;padding:14px 16px}
+.qa-badge{font-size:9px;color:var(--gold);background:var(--gold-dim);border:1px solid var(--gold-border);padding:2px 6px;border-radius:2px;flex-shrink:0;margin-top:1px;font-family:monospace}
+.qa-q-text{font-size:13px;color:var(--white);line-height:1.5;font-weight:500}
+.qa-answer{display:none;padding:0 16px 14px;border-top:1px solid rgba(255,255,255,.05)}
+.qa-card.open .qa-answer{display:block}
+.qa-a-text{font-size:12.5px;color:#9aacbe;line-height:1.7;font-style:italic;margin-top:10px;padding-left:14px;border-left:2px solid var(--gold-border)}
+.never-card{background:var(--navy-card);border:1px solid rgba(201,82,82,.2);border-radius:4px;padding:14px 16px;margin-bottom:8px}
+.never-bad{font-size:12.5px;color:var(--red);margin-bottom:6px;display:flex;gap:8px;align-items:flex-start}
+.never-x{flex-shrink:0;font-family:monospace}
+.never-fix{font-size:11.5px;color:var(--green);padding-left:18px;line-height:1.6}
+.quiz-wrap{padding-top:8px}
+.quiz-progress-bar{height:3px;background:rgba(255,255,255,.06);border-radius:2px;margin-bottom:24px;overflow:hidden}
+.quiz-progress-fill{height:100%;background:var(--gold);border-radius:2px;transition:width .4s ease}
+.quiz-card{background:var(--navy-card);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:24px 20px;margin-bottom:16px;min-height:160px;display:flex;flex-direction:column;justify-content:center}
+.quiz-q-num{font-size:9px;letter-spacing:.2em;color:var(--muted);text-transform:uppercase;margin-bottom:12px;font-family:monospace}
+.quiz-q-text{font-size:16px;font-weight:500;color:var(--white);line-height:1.5}
+.quiz-options{display:flex;flex-direction:column;gap:10px;margin-bottom:16px}
+.quiz-option{background:var(--navy-mid);border:1px solid rgba(255,255,255,.08);border-radius:6px;padding:14px 16px;font-size:13px;color:var(--white);line-height:1.4;cursor:pointer;text-align:left;-webkit-appearance:none;width:100%;transition:border-color .15s,background .15s}
+.quiz-option:active{opacity:.8}
+.quiz-option.correct{border-color:var(--green);background:var(--green-dim);color:var(--green)}
+.quiz-option.wrong{border-color:var(--red);background:var(--red-dim);color:var(--red)}
+.quiz-option.reveal{border-color:var(--green);background:var(--green-dim);color:var(--green)}
+.quiz-feedback{display:none;background:var(--navy-light);border-radius:6px;padding:14px 16px;margin-bottom:16px}
+.quiz-feedback.visible{display:block}
+.quiz-feedback-label{font-size:9px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:6px;font-family:monospace}
+.quiz-feedback.correct-fb .quiz-feedback-label{color:var(--green)}
+.quiz-feedback.wrong-fb .quiz-feedback-label{color:var(--red)}
+.quiz-feedback-text{font-size:12.5px;color:#b0c0d0;line-height:1.65}
+.quiz-next-btn{width:100%;padding:16px;background:var(--gold);border:none;border-radius:6px;font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:.1em;color:var(--navy);cursor:pointer;display:none;-webkit-appearance:none}
+.quiz-next-btn.visible{display:block}
+.quiz-done{display:none;text-align:center;padding:40px 20px}
+.quiz-done.visible{display:block}
+.quiz-done-score{font-family:'Bebas Neue',sans-serif;font-size:72px;color:var(--gold);letter-spacing:.04em;line-height:1}
+.quiz-done-label{font-size:11px;color:var(--muted);letter-spacing:.15em;text-transform:uppercase;margin-top:8px;font-family:monospace}
+.quiz-done-msg{font-size:14px;color:#b0c0d0;margin-top:20px;line-height:1.6}
+.quiz-restart-btn{margin-top:28px;padding:14px 32px;background:transparent;border:1px solid var(--gold);border-radius:4px;font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:.1em;color:var(--gold);cursor:pointer;-webkit-appearance:none}
+.streak-bar{display:flex;gap:4px;justify-content:center;margin-top:16px}
+.streak-dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.1)}
+.streak-dot.hit{background:var(--gold)}
+.streak-dot.miss{background:var(--red);opacity:.6}
+</style>
+</head>
+<body>
+<div class="nav"><div class="nav-inner"><div class="nav-brand">CL<span>CEO TECH REF</span></div><div class="nav-score"><span class="score-num" id="totalScore">0</span><span class="score-label">PTS</span></div></div></div>
+
+<div class="page active" id="page-stack">
+<div class="home-hero"><div class="hero-eyebrow">Harbor Security Technologies</div><div class="hero-title">COMMAND<span>LEGACY</span></div><div class="hero-sub">Technology Reference · CEO Edition</div></div>
+<div class="stat-strip"><div class="stat-tile"><span class="stat-tile-val">100%</span><span class="stat-tile-label">AWS Native</span></div><div class="stat-tile"><span class="stat-tile-val">0</span><span class="stat-tile-label">3rd-Party Auth</span></div><div class="stat-tile"><span class="stat-tile-val">CJIS</span><span class="stat-tile-label">Architecture</span></div></div>
+<div class="sec-label">Infrastructure</div>
+<div class="stack-card" onclick="toggleCard(this)"><div class="stack-card-header"><div class="stack-icon">☁</div><div class="stack-info"><div class="stack-tag">Cloud</div><div class="stack-name">Amazon Web Services</div></div><div class="stack-chevron">›</div></div><div class="stack-body"><div class="body-section-label">What it is</div><div class="body-text">The world's largest cloud platform. Every piece of Command Legacy runs here. No physical servers, no data centers to manage.</div><div class="say-block"><div class="say-label-sm">Say it like this</div><div class="say-text">"Our platform runs on Amazon Web Services — the same infrastructure used by the CIA, DoD, and major financial institutions. We chose AWS specifically for its FedRAMP authorization and CJIS compliance track record."</div></div><ul class="bullet-list"><li>Used by 90% of US government agencies</li><li>FedRAMP authorized cloud provider</li><li>Data never leaves US-based AWS data centers</li></ul></div></div>
+<div class="stack-card" onclick="toggleCard(this)"><div class="stack-card-header"><div class="stack-icon">⬡</div><div class="stack-info"><div class="stack-tag">Data Storage</div><div class="stack-name">DynamoDB</div></div><div class="stack-chevron">›</div></div><div class="stack-body"><div class="body-section-label">What it is</div><div class="body-text">AWS's enterprise key-value database. Stores all officer records, tiers, and access credentials — encrypted, fast, no third-party access. Millisecond lookups at any scale.</div><div class="say-block"><div class="say-label-sm">Say it like this</div><div class="say-text">"Officer data is stored in Amazon DynamoDB — an enterprise-grade encrypted database that meets federal security requirements. No officer data touches any third-party system."</div></div><div class="ceo-note"><div class="note-label-sm">CEO note</div><div class="note-text">Ask Tim: as enterprise contracts grow, how are we handling usage reporting? DynamoDB doesn't natively support complex analytics — we'll need a plan.</div></div></div></div>
+<div class="stack-card" onclick="toggleCard(this)"><div class="stack-card-header"><div class="stack-icon">⚡</div><div class="stack-info"><div class="stack-tag">Access Engine</div><div class="stack-name">Lambda + API Gateway</div></div><div class="stack-chevron">›</div></div><div class="stack-body"><div class="body-section-label">What it is</div><div class="body-text">Every app launch triggers Lambda, which checks DynamoDB and issues a signed digital badge (JWT). API Gateway is the secure front door. Zero third-party tools in this pipeline.</div><div class="say-block"><div class="say-label-sm">Say it like this</div><div class="say-text">"Access is verified on every app launch through our serverless entitlement engine. No officer can access the platform without passing our automated gate — regardless of credentials."</div></div><div class="ceo-note"><div class="note-label-sm">CEO note</div><div class="note-text">Ask Tim: what happens if a token expires mid-shift in a dead zone? Fail open (stays in) or fail closed (locked out)? Law enforcement needs a clear answer before enterprise pitches.</div></div></div></div>
+<div class="stack-card" onclick="toggleCard(this)"><div class="stack-card-header"><div class="stack-icon">🔐</div><div class="stack-info"><div class="stack-tag">Encryption</div><div class="stack-name">AWS KMS + Secrets Manager</div></div><div class="stack-chevron">›</div></div><div class="stack-body"><div class="body-section-label">What it is</div><div class="body-text">All encryption keys and credentials stored in AWS Key Management Service. Never in code, never in config files, never in logs. 256-bit encryption at rest and in transit.</div><div class="say-block"><div class="say-label-sm">Say it like this</div><div class="say-text">"Every credential and encryption key is stored in AWS KMS — the same service used by financial institutions and federal agencies. Nothing sensitive ever touches our application code."</div></div></div></div>
+<div class="sec-label" style="margin-top:20px">Product</div>
+<div class="stack-card" onclick="toggleCard(this)"><div class="stack-card-header"><div class="stack-icon">🔍</div><div class="stack-info"><div class="stack-tag">AI Legal Research</div><div class="stack-name">Sherlock AI</div></div><div class="stack-chevron">›</div></div><div class="stack-body"><div class="body-section-label">What it is</div><div class="body-text">Officers ask plain-language questions about statutes. Sherlock returns accurate, sourced answers. Temperature set to 0.2 to maximize factual accuracy and minimize hallucination.</div><div class="say-block"><div class="say-label-sm">Say it like this</div><div class="say-text">"Sherlock gives officers instant access to legal statutes in plain English — no law degree required. Citations are always provided so officers can verify every answer."</div></div><div class="ceo-note"><div class="note-label-sm">When asked "which AI?"</div><div class="note-text">"OpenAI via secure API — officer query data is not used for training." Never say "we use OpenAI" without that context.</div></div></div></div>
+<div class="stack-card" onclick="toggleCard(this)"><div class="stack-card-header"><div class="stack-icon">🏛</div><div class="stack-info"><div class="stack-tag">Community</div><div class="stack-name">Roll Call Room</div></div><div class="stack-chevron">›</div></div><div class="stack-body"><div class="body-section-label">What it is</div><div class="body-text">Private, verified peer community for law enforcement supervisors only. Every member individually vetted. Runs on Discourse. The verified community is the strategic moat.</div><div class="say-block"><div class="say-label-sm">Say it like this</div><div class="say-text">"Roll Call Room is a private professional community — think LinkedIn but exclusively for verified law enforcement. Every member has been individually vetted."</div></div><div class="ceo-note"><div class="note-label-sm">Strategic note</div><div class="note-text">A competitor can copy Sherlock's features in months. They cannot replicate 300 verified supervisors who trust each other. The community is the moat.</div></div></div></div>
+<div class="stack-card" onclick="toggleCard(this)"><div class="stack-card-header"><div class="stack-icon">📱</div><div class="stack-info"><div class="stack-tag">Mobile</div><div class="stack-name">iOS + Android Apps</div></div><div class="stack-chevron">›</div></div><div class="stack-body"><div class="body-section-label">What it is</div><div class="body-text">Native iOS app published in App Store. Android app built in Kotlin, in active development by Tim — currently ahead of iOS in features. Same security model across both platforms.</div><div class="say-block"><div class="say-label-sm">Say it like this</div><div class="say-text">"Command Legacy runs on any device — web, iPhone, or Android. Same secure login everywhere. No VPN required."</div></div></div></div>
+</div>
+
+<div class="page" id="page-ref">
+<div class="sec-label" style="margin-top:8px">Tough Questions</div>
+<div class="qa-card" onclick="toggleQA(this)"><div class="qa-q-row"><div class="qa-badge">Q</div><div class="qa-q-text">Where does our officers' data live?</div></div><div class="qa-answer"><div class="qa-a-text">"Entirely within Amazon Web Services US-East data centers. It never touches a third-party system. We can provide a full data flow diagram for your IT security team."</div></div></div>
+<div class="qa-card" onclick="toggleQA(this)"><div class="qa-q-row"><div class="qa-badge">Q</div><div class="qa-q-text">Is this CJIS compliant?</div></div><div class="qa-answer"><div class="qa-a-text">"Our architecture was designed to meet CJIS security policy requirements from day one. We're happy to walk your IT security director through our technical documentation."</div></div></div>
+<div class="qa-card" onclick="toggleQA(this)"><div class="qa-q-row"><div class="qa-badge">Q</div><div class="qa-q-text">What happens if there's a data breach?</div></div><div class="qa-answer"><div class="qa-a-text">"We have point-in-time recovery on all databases, CloudWatch monitoring across the entire stack, and an incident response process. We can share our security runbook."</div></div></div>
+<div class="qa-card" onclick="toggleQA(this)"><div class="qa-q-row"><div class="qa-badge">Q</div><div class="qa-q-text">Who else has access to our data?</div></div><div class="qa-answer"><div class="qa-a-text">"Only authorized Command Legacy personnel with role-based access controls. No vendors, no third parties, no AI training on your data. We can provide a full access control policy."</div></div></div>
+<div class="qa-card" onclick="toggleQA(this)"><div class="qa-q-row"><div class="qa-badge">Q</div><div class="qa-q-text">Do you support MFA or SSO?</div></div><div class="qa-answer"><div class="qa-a-text">"Our authentication architecture is intentionally lean for the controlled launch phase. MFA and agency SSO are on our near-term roadmap as we scale to larger departments."</div></div></div>
+<div class="qa-card" onclick="toggleQA(this)"><div class="qa-q-row"><div class="qa-badge">Q</div><div class="qa-q-text">Which AI model powers Sherlock?</div></div><div class="qa-answer"><div class="qa-a-text">"OpenAI via secure API. Officer query data is never used for model training. The data boundary is structural — enforced at the API level, not just a policy."</div></div></div>
+<div class="sec-label" style="margin-top:24px">Never Say These Things</div>
+<div class="never-card"><div class="never-bad"><span class="never-x">✕</span> "We use Zapier / Airtable for officer data"</div><div class="never-fix">→ We removed these. No third-party tools in the auth pipeline.</div></div>
+<div class="never-card"><div class="never-bad"><span class="never-x">✕</span> "It's basically just a Discourse forum"</div><div class="never-fix">→ Say "verified professional community with controlled access."</div></div>
+<div class="never-card"><div class="never-bad"><span class="never-x">✕</span> "The AI might be wrong sometimes"</div><div class="never-fix">→ Say "citations are always provided so officers can verify."</div></div>
+<div class="never-card"><div class="never-bad"><span class="never-x">✕</span> "We're working on CJIS compliance"</div><div class="never-fix">→ Say "designed for CJIS requirements from day one."</div></div>
+<div class="never-card"><div class="never-bad"><span class="never-x">✕</span> "It's still in beta"</div><div class="never-fix">→ Say "we're in a controlled launch phase."</div></div>
+<div class="never-card"><div class="never-bad"><span class="never-x">✕</span> "We use OpenAI" (without context)</div><div class="never-fix">→ Add "via secure API — query data is not used for training."</div></div>
+</div>
+
+<div class="page" id="page-quiz">
+<div class="quiz-wrap" id="quizActive">
+<div class="quiz-progress-bar"><div class="quiz-progress-fill" id="quizProgress" style="width:0%"></div></div>
+<div class="quiz-card"><div class="quiz-q-num" id="qNum">Question 1 of 10</div><div class="quiz-q-text" id="qText"></div></div>
+<div class="quiz-options" id="qOptions"></div>
+<div class="quiz-feedback" id="qFeedback"><div class="quiz-feedback-label" id="qFeedbackLabel"></div><div class="quiz-feedback-text" id="qFeedbackText"></div></div>
+<button class="quiz-next-btn" id="qNext" onclick="nextQuestion()">NEXT →</button>
+</div>
+<div class="quiz-done" id="quizDone"><div class="quiz-done-score" id="doneScore">0/10</div><div class="quiz-done-label">Session Complete</div><div class="streak-bar" id="streakBar"></div><div class="quiz-done-msg" id="doneMsg"></div><button class="quiz-restart-btn" onclick="startQuiz()">RUN IT AGAIN</button></div>
+</div>
+
+<div class="tabs">
+<button class="tab active" onclick="showPage('stack',this)"><div class="tab-icon">⚙</div><div class="tab-label">Stack</div></button>
+<button class="tab" onclick="showPage('ref',this)"><div class="tab-icon">💬</div><div class="tab-label">Quick Ref</div></button>
+<button class="tab" onclick="showPage('quiz',this);startQuizOnce()"><div class="tab-icon">🎯</div><div class="tab-label">Quiz</div></button>
+</div>
+<script>
+function showPage(id,tab){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));document.getElementById('page-'+id).classList.add('active');tab.classList.add('active')}
+function toggleCard(el){el.classList.toggle('open')}
+function toggleQA(el){el.classList.toggle('open')}
+const Q=[{q:"What does Lambda do in the Command Legacy entitlement flow?",options:["Stores officer records","Runs the entitlement check and issues a signed JWT","Manages the App Store subscription","Hosts the Roll Call Room"],correct:1,explain:"Lambda fires on every app launch, checks DynamoDB for the officer's record, and if active, signs and returns a JWT. The app uses that JWT for the next 48 hours without hitting Lambda again."},{q:"An IT director asks: 'Is this CJIS compliant?' What do you say?",options:["We're working on CJIS compliance","We use CJIS-certified servers","Our architecture was designed to meet CJIS security policy requirements from day one","We will be compliant by Q3"],correct:2,explain:"Never say 'working on' — it signals you're not there yet. The correct answer acknowledges the architecture is CJIS-aligned and offers to walk their IT director through documentation."},{q:"What is a JWT in the context of Command Legacy?",options:["A type of database query","A signed digital badge proving an officer is authorized, valid for 48 hours","A government security certification","The encryption standard used for data at rest"],correct:1,explain:"JWT stands for JSON Web Token. It's a cryptographically signed badge the app holds after the entitlement check. The signature means it can't be forged, and the 48-hour expiry means stale access gets cut off automatically."},{q:"What is the key advantage of DynamoDB over a traditional SQL database for the entitlement check?",options:["It supports complex analytics queries","It's free at any scale","It delivers millisecond lookups by key — perfect for a single email lookup","It stores data in multiple countries"],correct:2,explain:"DynamoDB is optimized for known-key lookups — exactly what the entitlement check does. SQL databases are more powerful for complex queries across tables, but slower for this specific use case."},{q:"What does Terraform do for Command Legacy?",options:["It encrypts data in transit","It translates infrastructure into code that can reproduce the environment exactly","It manages App Store subscriptions","It monitors server uptime"],correct:1,explain:"Terraform turns AWS infrastructure from 'things Tim clicked' into documented code stored in GitHub. Any engineer can read it, reproduce the environment exactly, and recover quickly from failures."},{q:"Why does Command Legacy use enterprise direct invoicing (Tier 1) instead of App Store billing for departments?",options:["App Store billing is more secure","Direct invoicing avoids the 15-30% platform cut and keeps offboarding in HST's control","Apple doesn't allow law enforcement apps","Departments can't use credit cards"],correct:1,explain:"App Store and Google Play take 15-30% of every dollar. Tier 1 enterprise billing goes direct via invoice or ACH — zero platform cut, 100% margin retained. Offboarding is also a DynamoDB flag flip, not an App Store support request."},{q:"Someone asks what the Roll Call Room is. What should you NOT say?",options:["A verified professional community for law enforcement","Basically just a Discourse forum","A private peer network where every member has been individually vetted","Think LinkedIn but exclusively for law enforcement"],correct:1,explain:"Calling it 'basically just a Discourse forum' undersells the product and misses the strategic point. The verified membership and access control are the differentiator — not the underlying software."},{q:"What does AWS KMS do?",options:["Manages app updates","Stores all encryption keys and credentials — never in code or config files","Routes API traffic","Handles push notifications"],correct:1,explain:"AWS Key Management Service is where all secrets live. The 256-bit encryption protecting officer data depends on keys that never touch application code. This is a key point in any security conversation."},{q:"When is Cognito worth adding to Command Legacy's architecture?",options:["Immediately — it should replace Lambda now","When MFA or agency SSO becomes a contract requirement from larger departments","Never — Lambda JWT is sufficient at any scale","Only after 10,000 users"],correct:1,explain:"Cognito makes sense when enterprise IT directors start requiring MFA or SSO (like Active Directory integration). It's not needed now, but BPD-level agencies will ask for it. That's the trigger."},{q:"What is the correct response when asked 'which AI powers Sherlock?'",options:["We built our own AI","OpenAI — our officers' queries help improve the model","OpenAI via secure API — officer query data is not used for training","We can't disclose that"],correct:2,explain:"Never say just 'OpenAI' without the context. The data boundary is the differentiator — officer queries don't train any external model. That's a meaningful privacy and security claim that chiefs and IT directors will care about."}];
+let cQ=0,score=0,total=0,answered=false,hist=[],started=false;
+function startQuizOnce(){if(!started){startQuiz();started=true}}
+function startQuiz(){cQ=0;score=0;answered=false;hist=[];document.getElementById('quizDone').classList.remove('visible');document.getElementById('quizActive').style.display='block';renderQ()}
+function renderQ(){const q=Q[cQ];document.getElementById('qNum').textContent='Question '+(cQ+1)+' of '+Q.length;document.getElementById('qText').textContent=q.q;document.getElementById('quizProgress').style.width=(cQ/Q.length*100)+'%';const fb=document.getElementById('qFeedback');fb.className='quiz-feedback';fb.classList.remove('visible');document.getElementById('qNext').classList.remove('visible');const o=document.getElementById('qOptions');o.innerHTML='';q.options.forEach((opt,i)=>{const b=document.createElement('button');b.className='quiz-option';b.textContent=opt;b.onclick=()=>answer(i);o.appendChild(b)});answered=false}
+function answer(idx){if(answered)return;answered=true;const q=Q[cQ];const opts=document.querySelectorAll('.quiz-option');const fb=document.getElementById('qFeedback');const ok=idx===q.correct;opts.forEach((b,i)=>{if(i===q.correct)b.classList.add('reveal');else if(i===idx&&!ok)b.classList.add('wrong');b.onclick=null});if(ok){score++;total+=10;document.getElementById('totalScore').textContent=total;fb.classList.add('correct-fb');document.getElementById('qFeedbackLabel').textContent='Correct +10 pts';hist.push('hit')}else{fb.classList.add('wrong-fb');document.getElementById('qFeedbackLabel').textContent='Not quite';hist.push('miss')}document.getElementById('qFeedbackText').textContent=q.explain;fb.classList.add('visible');document.getElementById('qNext').classList.add('visible')}
+function nextQuestion(){cQ++;if(cQ>=Q.length)showDone();else renderQ()}
+function showDone(){document.getElementById('quizProgress').style.width='100%';document.getElementById('quizActive').style.display='none';const d=document.getElementById('quizDone');d.classList.add('visible');document.getElementById('doneScore').textContent=score+'/'+Q.length;document.getElementById('streakBar').innerHTML=hist.map(h=>'<div class="streak-dot '+h+'"></div>').join('');const p=score/Q.length;document.getElementById('doneMsg').textContent=p===1?"Perfect. You walked through every concept today and it stuck. You're ready for any technical conversation.":p>=.8?"Solid. You know the platform well. Review the ones you missed — those are the edge cases that show up in enterprise conversations.":p>=.6?"Good start. Keep clicking through the Stack tab and run the quiz again. The concepts build on each other.":"Keep going. Spend some time in the Stack and Quick Ref tabs, then run this again. You'll get there."}
+</script>
+</body>
+</html>
